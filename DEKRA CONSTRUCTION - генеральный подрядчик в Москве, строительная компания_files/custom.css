@@ -1,0 +1,85 @@
+.header._light .header__logo rect:not(.not-change) {
+  fill: #fff;
+}
+.header._open .header__logo rect:not(.not-change) {
+  fill: #333;
+}
+@media screen and (max-width: 992px) {
+  .main__link {
+    display: block;
+    margin-top: 60px;
+    margin-left: 72px;
+    font-size: 14px;
+  }
+  .main__link svg {
+    width: 17px;
+  }
+}
+
+.modal__dialog.specification {
+  width: auto;
+  max-width: 600px;
+}
+
+.progress_tab {
+  display: none;
+}
+
+.progress_tab.active {
+  display: block;
+}
+.events-content {
+  margin-top: 20px;
+}
+.events-content .news-item__date {
+  margin-top: 5px;
+}
+.gallery-card--video::before {
+  content: '';
+  position: absolute;
+  display: block;
+  top: 50%;
+  left: 50%;
+  margin: -35px 0 0 -35px;
+  width: 70px;
+  height: 70px;
+  background: url('../img/video-play.svg') no-repeat;
+  z-index: 10;
+}
+
+.activities-page__link .image-block__img {
+ -webkit-mask-image: -webkit-radial-gradient(white, black);
+}
+.activities-page__link .image-block__img img {
+ transition: transform 2s ease;
+}
+.activities-page .image-block__img::before {
+ z-index: 1;
+}
+.activities-page__link .image-block__img:hover img, .activities-page__link .image-block__img:hover img::before {
+ transform: scale(1.1);
+}
+
+.year-tabs__item {
+-webkit-appearance: none;
+appearance: none;
+color: #222;
+}
+.year-tabs__item:active {
+color: #222;
+}
+/*.year-tabs__item:focus {*/
+/*color: #222;*/
+/*}*/
+
+
+@media screen and (max-width: 575px) {
+	.main-slider__media {
+		background-position: center center;
+	}
+}
+
+.detailed-news__text a {
+  text-decoration: underline;
+  color: var(--primary-color);
+}

@@ -1,0 +1,71 @@
+$(document).ready(function () {
+  $('.js-form').on('submit', function (e) {
+    e.preventDefault();
+
+    var form = $(this)[0]
+    var formData = new FormData(form)
+
+    const success = $('html').attr('lang') == 'ru' ? 'Ваша заявка отправлена, мы свяжемся с Вами в ближайшее время' : 'Your message has been sent, we will contact you shortly';
+    const error = $('html').attr('lang') == 'ru' ? 'Проверьте правильность заполнения полей' : 'Check if the fields are filled in correctly';
+
+    $.ajax({
+      url: '/ajax/',
+      type: 'POST',
+      data: formData,
+      processData: false,
+      contentType: false,
+      success: function (data) {
+        if (data.result) {
+          alert(success);
+          form.reset()
+        } else {
+          alert(error);
+        }
+      },
+    })
+  })
+
+  $('.container').on('click touchstart', '.js-more', function() {
+    const next = $('.pagination .pagination__btn--next');
+
+    $(this).remove();
+    $('.pagination').remove();
+
+    if (next.length > 0) {
+      $.ajax({
+        url: next.attr('href'),
+        type: 'POST',
+        dataType: 'html',
+        success: function(html) {
+          const result = $(html),
+                items = result.find('#ajax-content').html();
+
+          $('#ajax-content').append(items);
+          $('.animated').not('animated--active').addClass('animated--active');
+        }
+      });
+    }
+  });
+
+  $('.year-tabs__item').on('click touchstart', function() {
+    const currentTab = $('.progress_tab').eq($(this).index());
+
+    $(this).addClass('_active').siblings().removeClass('_active');
+
+    currentTab.addClass('active').siblings().removeClass('active');
+    currentTab.find('.animated-opacity').addClass('animated--active');
+  });
+
+  new Swiper(".news-slider", {
+    slidesPerView: 'auto',
+    loop: true,
+    speed: 2000,
+    autoplay: {
+      delay: 3500
+    },
+    pagination: {
+        el: document.querySelector('.advantages__pagination'),
+        clickable: true
+    },
+  })
+})
